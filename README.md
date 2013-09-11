@@ -12,6 +12,16 @@ $ sudo npm install etager -g
 ### Example
 ````javascript
 var etager = require('etager');
+
+// use as Express middleware
+app.use(etager.listen);
+
+// add tracker [img] in router
+app.get('/xxx',function(req, res, next){
+    res.render('demo',{
+        tracker: res.locals.tracker // or use in jade directly
+    });
+});
 ````
 
 ### API

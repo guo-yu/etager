@@ -12,6 +12,18 @@ $ sudo npm install etager -g
 ### 范例代码
 ````javascript
 var etager = require('etager');
+
+var etager = require('etager');
+
+// 当做 Express 中间件使用
+app.use(etager.listen);
+
+// add tracker [img] in router
+app.get('/xxx',function(req, res, next){
+    res.render('demo',{
+        tracker: res.locals.tracker // 或者直接在jade中输出 tracker
+    });
+});
 ````
 
 ### API

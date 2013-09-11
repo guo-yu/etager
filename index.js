@@ -8,20 +8,23 @@ exports.tracker = function(url) {
 }
 
 exports.listen = function(req, res, next) {
-    if (req.url == exports.url) {
+    var keepTag = function(tag) {
+        res.set('ETag', tag);
+        res.send('');
+    };
+    if (req.url.indexOf(exports.url) > -1) {
         var last = req.headers['if-none-match'],
             from = req.query.from;
         if (last) {
-            res.set('ETag', last);
-            res.send('');
+            // console.log(last + ' 正在访问页面：' + from);
+            keepTag(last);
         } else {
-            var uid = uuid.v1();
-            res.set('ETag', uid);
-            res.send('');
+            keepTag(uuid.v1());
         }
     } else {
         if (!res.locals.tracker) {
             res.locals.tracker = exports.tracker(req.url);
         }
+        next()
     }
 }
