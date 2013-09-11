@@ -1,6 +1,6 @@
 ## ![logo](https://cdn0.iconfinder.com/data/icons/windows8_icons/26/price_tag.png) etager ![npm](https://badge.fury.io/js/etager.png)
 
-a smart uuid-etag creator by [turing](https://npmjs.org/~turing) 
+a tiny etag tracker middleware by [turing](https://npmjs.org/~turing) 
 
 ### 如何安装
 ````

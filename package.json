@@ -1,7 +1,7 @@
 {
   "name": "etager",
   "version": "0.0.1",
-  "description": "a smart uuid-etag creator",
+  "description": "a tiny etag tracker middleware",
   "logo": "https://cdn0.iconfinder.com/data/icons/windows8_icons/26/price_tag.png",
   "main": "index.js",
   "scripts": {
