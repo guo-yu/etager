@@ -2,6 +2,7 @@
   "name": "etager",
   "version": "0.0.0",
   "description": "a smart uuid-etag creator",
+  "logo": "https://cdn0.iconfinder.com/data/icons/windows8_icons/26/price_tag.png",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
