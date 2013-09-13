@@ -13,12 +13,18 @@ $ sudo npm install etager -g
 ````javascript
 var etager = require('etager');
 
-var etager = require('etager');
-
 // 当做 Express 中间件使用
-app.use(etager.listen);
+app.use(etager.listen(function(uuid, request, firstaccess){
+    if (firstaccess) {
+        console.log('hi newbie [' + uuid + ']');
+        console.log('you are come from' + request.query.from);
+    } else {
+        console.log('welcome back [' + uuid + ']');
+        console.log('you are come from' + request.query.from);
+    }
+}));
 
-// add tracker [img] in router
+// 在具体页面中加入tracker
 app.get('/xxx',function(req, res, next){
     res.render('demo',{
         tracker: res.locals.tracker // 或者直接在jade中输出 tracker

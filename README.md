@@ -1,6 +1,6 @@
 ## ![logo](https://cdn0.iconfinder.com/data/icons/windows8_icons/26/price_tag.png) etager ![npm](https://badge.fury.io/js/etager.png)
 
-a tiny etag tracker middleware by [turing](https://npmjs.org/~turing) 
+a tiny etag tracker middleware by [turing](https://npmjs.org/~turing) [点击查看中文说明](https://github.com/turingou/etager/blob/master/README.zh-CN.md)
 
 ### Installation
 ````
@@ -14,7 +14,15 @@ $ sudo npm install etager -g
 var etager = require('etager');
 
 // use as Express middleware
-app.use(etager.listen);
+app.use(etager.listen(function(uuid, request, firstaccess){
+    if (firstaccess) {
+        console.log('hi newbie [' + uuid + ']');
+        console.log('you are come from' + request.query.from);
+    } else {
+        console.log('welcome back [' + uuid + ']');
+        console.log('you are come from' + request.query.from);
+    }
+}));
 
 // add tracker [img] in router
 app.get('/xxx',function(req, res, next){
