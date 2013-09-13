@@ -19,10 +19,8 @@ var Server = function() {
     app.use(etager.listen(function(uuid, request, firstaccess){
         if (firstaccess) {
             console.log('hi newbie [' + uuid + ']');
-            console.log('you are come from' + request.query.from);
         } else {
             console.log('welcome back [' + uuid + ']');
-            console.log('you are come from' + request.query.from);
         }
     }));
     app.use(app.router);

@@ -1,20 +1,21 @@
 var uuid = require('node-uuid');
 
-exports.image = 'tracker.jpg';
-exports.url = '/' + exports.image;
-
-exports.tracker = function(url) {
-    return "<img src='" + exports.image + "?from=" + url + "' style='display:none !important;' />";
+exports.tracker = function() {
+    this.image = 'tracker.jpg';
+    this.url = '/' + this.image;
+    this.html = "<img src='" + this.image + "' style='display:none !important;' />";
+    return this;
 }
 
 exports.listen = function(cb) {
+    var tracker = exports.tracker();
     return function(req, res, next) {
         var keepTag = function(tag) {
                 res.set('ETag', tag);
                 res.send('');
             };
         // 如果访问tracker
-        if (req.url.indexOf(exports.url) > -1) {
+        if (req.url.indexOf(tracker.url) > -1) {
             var tag = req.headers['if-none-match'];
             if (tag) {
                 cb(tag, req, false);
@@ -27,7 +28,7 @@ exports.listen = function(cb) {
         } else {
             // 如果访问其他url
             if (!res.locals.tracker) {
-                res.locals.tracker = exports.tracker(req.url);
+                res.locals.tracker = tracker.html;
             }
             next()
         }

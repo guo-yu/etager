@@ -5,8 +5,6 @@ a tiny etag tracker middleware by [turing](https://npmjs.org/~turing)
 ### 如何安装
 ````
 $ npm install etager
-// 安装到全局
-$ sudo npm install etager -g
 ````
 
 ### 范例代码
@@ -17,10 +15,8 @@ var etager = require('etager');
 app.use(etager.listen(function(uuid, request, firstaccess){
     if (firstaccess) {
         console.log('hi newbie [' + uuid + ']');
-        console.log('you are come from' + request.query.from);
     } else {
         console.log('welcome back [' + uuid + ']');
-        console.log('you are come from' + request.query.from);
     }
 }));
 
@@ -30,6 +26,13 @@ app.get('/xxx',function(req, res, next){
         tracker: res.locals.tracker // 或者直接在jade中输出 tracker
     });
 });
+````
+
+### Demo
+````
+$ git clone https://github.com/turingou/etager.git
+$ git cd etager/demo
+$ node server.js
 ````
 
 ### API

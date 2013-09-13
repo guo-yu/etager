@@ -7,8 +7,6 @@ a tiny etag tracker middleware by [turing](https://npmjs.org/~turing)
 ### Installation
 ````
 $ npm install etager
-// or install globally
-$ sudo npm install etager -g
 ````
 
 ### Example
@@ -19,10 +17,8 @@ var etager = require('etager');
 app.use(etager.listen(function(uuid, request, firstaccess){
     if (firstaccess) {
         console.log('hi newbie [' + uuid + ']');
-        console.log('you are come from' + request.query.from);
     } else {
         console.log('welcome back [' + uuid + ']');
-        console.log('you are come from' + request.query.from);
     }
 }));
 
@@ -32,6 +28,13 @@ app.get('/xxx',function(req, res, next){
         tracker: res.locals.tracker // or use in jade directly
     });
 });
+````
+
+### Demo
+````
+$ git clone https://github.com/turingou/etager.git
+$ git cd etager/demo
+$ node server.js
 ````
 
 ### API
