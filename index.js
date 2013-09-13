@@ -7,24 +7,29 @@ exports.tracker = function(url) {
     return "<img src='" + exports.image + "?from=" + url + "' style='display:none !important;' />";
 }
 
-exports.listen = function(req, res, next) {
-    var keepTag = function(tag) {
-        res.set('ETag', tag);
-        res.send('');
-    };
-    if (req.url.indexOf(exports.url) > -1) {
-        var last = req.headers['if-none-match'],
-            from = req.query.from;
-        if (last) {
-            // console.log(last + ' 正在访问页面：' + from);
-            keepTag(last);
+exports.listen = function(cb) {
+    return function(req, res, next) {
+        var keepTag = function(tag) {
+                res.set('ETag', tag);
+                res.send('');
+            };
+        // 如果访问tracker
+        if (req.url.indexOf(exports.url) > -1) {
+            var tag = req.headers['if-none-match'];
+            if (tag) {
+                cb(tag, req, false);
+                keepTag(tag);
+            } else {
+                var uid = uuid.v1();
+                cb(uid, req, true);
+                keepTag(uid);
+            }
         } else {
-            keepTag(uuid.v1());
+            // 如果访问其他url
+            if (!res.locals.tracker) {
+                res.locals.tracker = exports.tracker(req.url);
+            }
+            next()
         }
-    } else {
-        if (!res.locals.tracker) {
-            res.locals.tracker = exports.tracker(req.url);
-        }
-        next()
-    }
+    };
 }
