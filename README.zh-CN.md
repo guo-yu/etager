@@ -40,6 +40,9 @@ $ node server.js
 ### API
 详细API接口函数请查看文件： `index.js`
 
+- etager.tracker()
+- etager.listen()
+
 ### 欢迎贡献代码
 - Fork 这个项目
 - Clone 你的新项目到本地

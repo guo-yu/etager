@@ -40,8 +40,6 @@ $ node server.js
 
 ### API
 
-- etager.image()
-- etager.url()
 - etager.tracker()
 - etager.listen()
 
