@@ -2,6 +2,8 @@
 
 a tiny etag tracker middleware by [turing](https://npmjs.org/~turing) 
 
+![screenshot](http://ww3.sinaimg.cn/large/61ff0de3gw1e8kzcfnsxsj20kj0demz5.jpg)
+
 ### 如何安装
 ````
 $ npm install etager
