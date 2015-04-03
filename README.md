@@ -1,40 +1,39 @@
-## ![logo](https://cdn0.iconfinder.com/data/icons/windows8_icons/26/price_tag.png) etager ![npm](https://badge.fury.io/js/etager.png)
+## ![etager](https://cdn0.iconfinder.com/data/icons/windows8_icons/26/price_tag.png) etager ![npm](https://badge.fury.io/js/etager.png)
 
-a tiny etag tracker middleware by [turing](https://npmjs.org/~turing) 
-[点击查看中文说明](https://github.com/turingou/etager/blob/master/README.zh-CN.md)
+A tiny etag tracker middleware by [turing](https://npmjs.org/~turing) 
 
 ![screenshot](http://ww3.sinaimg.cn/large/61ff0de3gw1e8kzcfnsxsj20kj0demz5.jpg)
 
 ### Installation
-````
+```bash
 $ npm install etager
-````
+```
 
 ### Example
 ````javascript
 var etager = require('etager');
 
-// use as Express middleware
+// Use as Express middleware
 app.use(etager.listen(function(uuid, request, firstaccess){
-  if (firstaccess) {
-    console.log('hi newbie [' + uuid + ']');
-  } else {
-    console.log('welcome back [' + uuid + ']');
-  }
+  console.log(
+    firstaccess ? 
+    'hi newbie [' + uuid + ']' : 
+    welcome back [' + uuid + ']'
+  );
 }));
 
-// add tracker [img] in router
-app.get('/xxx',function(req, res, next){
+// Add tracker <img /> in router
+app.get('/url',function(req, res, next){
   res.render('demo',{
     tracker: res.locals.tracker // or use in jade directly
   });
 });
 ````
 
-### Demo
+### Examples
 ````
 $ git clone https://github.com/turingou/etager.git
-$ git cd etager/demo
+$ git cd etager/examples
 $ node server.js
 ````
 
@@ -53,7 +52,7 @@ $ node server.js
 - Open a pull request, and enjoy <3
 
 ### MIT license
-Copyright (c) 2013 turing
+Copyright (c) 2013 turing &lt;o.u.turing@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
