@@ -16,18 +16,18 @@ var etager = require('etager');
 
 // use as Express middleware
 app.use(etager.listen(function(uuid, request, firstaccess){
-    if (firstaccess) {
-        console.log('hi newbie [' + uuid + ']');
-    } else {
-        console.log('welcome back [' + uuid + ']');
-    }
+  if (firstaccess) {
+    console.log('hi newbie [' + uuid + ']');
+  } else {
+    console.log('welcome back [' + uuid + ']');
+  }
 }));
 
 // add tracker [img] in router
 app.get('/xxx',function(req, res, next){
-    res.render('demo',{
-        tracker: res.locals.tracker // or use in jade directly
-    });
+  res.render('demo',{
+    tracker: res.locals.tracker // or use in jade directly
+  });
 });
 ````
 
@@ -72,7 +72,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
 
 ---
 ![docor](https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/doctor.png)

@@ -1,12 +1,8 @@
 {
   "name": "etager",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "a tiny etag tracker middleware",
-  "logo": "https://cdn0.iconfinder.com/data/icons/windows8_icons/26/price_tag.png",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/turingou/etager.git"
@@ -21,6 +17,6 @@
     "url": "https://github.com/turingou/etager/issues"
   },
   "dependencies": {
-    "node-uuid": "*"
+    "node-uuid": "~1.4.3"
   }
 }

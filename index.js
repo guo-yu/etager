@@ -1,37 +1,29 @@
-var uuid = require('node-uuid');
+exports.listen = listen;
+exports.tracker = tracker;
 
-exports.tracker = function() {
+function tracker() {
   this.image = 'tracker.jpg';
   this.url = '/' + this.image;
   this.html = "<img src='" + this.image + "' style='display:none !important;' />";
   return this;
 }
 
-exports.listen = function(callback) {
-  var tracker = exports.tracker();
+function listen(callback) {
+  var tracker = tracker();
+
   return function(req, res, next) {
-    // 如果访问tracker
-    if (req.url.indexOf(tracker.url) > -1) {
-      var tag = req.headers['if-none-match'];
-      if (tag) {
-        callback(tag, req, false);
-        keepTag(tag);
-      } else {
-        var uid = uuid.v1();
-        callback(uid, req, true);
-        keepTag(uid);
-      }
-    } else {
-      // 如果访问其他 uri
-      if (!res.locals.tracker) {
+    if (req.url.indexOf(tracker.url) === -1) {
+      if (!res.locals.tracker)
         res.locals.tracker = tracker.html;
-      }
+
       return next();
     }
 
-    function keepTag(tag) {
-      res.set('ETag', tag);
-      res.send('');
-    }
+    var hasTag = req.headers['if-none-match'];
+    var tag = hasTag || require('node-uuid').v1();
+
+    callback(tag, req, !!!hasTag);
+    res.set('ETag', tag);
+    res.send('');
   }
 }
