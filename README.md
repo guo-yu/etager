@@ -18,7 +18,7 @@ app.use(etager.listen(function(uuid, request, firstaccess){
   console.log(
     firstaccess ? 
     'hi newbie [' + uuid + ']' : 
-    welcome back [' + uuid + ']'
+    'welcome back [' + uuid + ']'
   );
 }));
 
