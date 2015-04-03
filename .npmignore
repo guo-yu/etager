@@ -3,4 +3,7 @@ node_modules
 *.sublime*
 psd
 thumb
+examples
 *.log
+*.npmignore
+*.gitignore
